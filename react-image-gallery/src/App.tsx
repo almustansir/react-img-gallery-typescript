@@ -23,10 +23,15 @@ function App() {
   }
 
   const handleAddImg = (newImg: Image) => {
-    console.log(newImg.id)
-    console.log(newImg.title)
-    console.log(newImg.imgAlt)
-    console.log(newImg.imgLink)
+    setImages(prevImages => [
+      ...prevImages,
+      {
+        id: newImg.id,
+        title: newImg.title,
+        imgAlt: newImg.imgAlt,
+        imgLink: newImg.imgLink
+      }
+    ])
   }
 
   return (

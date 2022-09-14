@@ -18,16 +18,22 @@ const AddImgFormComp: React.FunctionComponent<IAddImgFormCompProps> = ({ handleA
     return(
         <div>
             <form onSubmit={(e) => {
+                // prevents default behavior
                 e.preventDefault()
-                console.log(newImageVarr.title);
-                console.log(newImageVarr.imgAlt);
-                console.log(newImageVarr.imgLink);
 
-                setNewImageVarr({ ...newImageVarr, id: uuidv4() })
-
+                // sending data back to App.tsx
                 handleAddImg?.(newImageVarr)
-                console.log("submitted");
-                
+                console.log("submitted")
+
+                // clearing iinput field
+                setNewImageVarr({
+                    id: "",
+                    title: "",
+                    imgAlt: "",
+                    imgLink: ""
+                })
+                console.log("cleared");
+
             }}>
                 <label>
                     Image Title:
@@ -36,7 +42,7 @@ const AddImgFormComp: React.FunctionComponent<IAddImgFormCompProps> = ({ handleA
                         name="title"
                         placeholder='Title'
                         value={newImageVarr.title}
-                        onChange={(e) => {setNewImageVarr({ ...newImageVarr, title: e.target.value })}}
+                        onChange={(e) => {setNewImageVarr({ ...newImageVarr, title: e.target.value})}}
                         />
                 </label>
                 <label>
@@ -59,7 +65,7 @@ const AddImgFormComp: React.FunctionComponent<IAddImgFormCompProps> = ({ handleA
                         onChange={(e) => {setNewImageVarr({ ...newImageVarr, imgLink: e.target.value })}}
                     />
                 </label>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" onClick={() => {setNewImageVarr({ ...newImageVarr, id: uuidv4()})}} />
             </form>
         </div>
     );
