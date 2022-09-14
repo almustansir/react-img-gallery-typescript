@@ -16,15 +16,13 @@ const AddImgFormComp: React.FunctionComponent<IAddImgFormCompProps> = ({ handleA
     
 
     return(
-        <div>
-            <form onSubmit={(e) => {
+        <>
+            <h1 className="display-6 mb-0">Add Image Form</h1>
+            <form className="row" onSubmit={(e) => {
                 // prevents default behavior
                 e.preventDefault()
-
                 // sending data back to App.tsx
                 handleAddImg?.(newImageVarr)
-                console.log("submitted")
-
                 // clearing iinput field
                 setNewImageVarr({
                     id: "",
@@ -32,42 +30,49 @@ const AddImgFormComp: React.FunctionComponent<IAddImgFormCompProps> = ({ handleA
                     imgAlt: "",
                     imgLink: ""
                 })
-                console.log("cleared");
 
             }}>
-                <label>
-                    Image Title:
+                <div className="col-md-6 mt-2 mb-2">
+                    <label className="form-label">Image Title</label>
                     <input
+                        className="form-control"
                         type="text"
                         name="title"
                         placeholder='Title'
+                        required={true}
                         value={newImageVarr.title}
                         onChange={(e) => {setNewImageVarr({ ...newImageVarr, title: e.target.value})}}
-                        />
-                </label>
-                <label>
-                    Image Alt:
+                    />
+                </div>
+                <div className="col-md-6 mt-2 mb-2">
+                    <label className="form-label">Image Alt</label>
                     <input
+                        className="form-control"
                         type="text"
                         name="alt"
                         placeholder="Alt"
+                        required={true}
                         value={newImageVarr.imgAlt}
                         onChange={(e) => {setNewImageVarr({ ...newImageVarr, imgAlt: e.target.value })}}
-                        />
-                </label>
-                <label>
-                    Image Link:
+                    />
+                </div>
+                <div className="col-12 mt-2 mb-2">
+                    <label className="form-label">Address</label>
                     <input
+                        className="form-control"
                         type="text"
                         name="link"
                         placeholder="link"
+                        required={true}
                         value={newImageVarr.imgLink}
                         onChange={(e) => {setNewImageVarr({ ...newImageVarr, imgLink: e.target.value })}}
                     />
-                </label>
-                <input type="submit" value="Submit" onClick={() => {setNewImageVarr({ ...newImageVarr, id: uuidv4()})}} />
+                </div>
+                <div className="col-12 mt-2 mb-3">
+                    <button type="submit" className="btn btn-primary" onClick={() => {setNewImageVarr({ ...newImageVarr, id: uuidv4() })}}>Add Image</button>
+                </div>
             </form>
-        </div>
+        </>
     );
 };
 

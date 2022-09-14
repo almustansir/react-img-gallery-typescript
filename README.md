@@ -5,3 +5,5 @@
 # Contents:
     + Typescript
     + react
+    + bootstrap
+    + sass/scss
